@@ -1,0 +1,17 @@
+bin/
+/db
+.eclipse
+/lib/
+logs
+/modules
+/project/project
+target
+tmp/
+test-result
+server.pid
+*.iml
+*.eml
+/dist/
+.cache
+secrets.sbt
+.idea/
