@@ -4,7 +4,7 @@ import sbt._
 
 object Secrets extends AutoPlugin {
 
-  object autoPlugin {
+  object autoImport {
 
     val secretFiles = settingKey[Seq[File]](
       "Files containing secrets that cannot be commited unencrypted to SCM."
@@ -19,5 +19,13 @@ object Secrets extends AutoPlugin {
     )
 
   }
+
+  import autoImport._
+
+  override def projectSettings = Seq(
+
+    secretFiles := Seq.empty
+
+  )
 
 }

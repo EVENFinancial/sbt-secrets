@@ -1,3 +1,5 @@
 name := "test-project"
 
-enablePlugins(Secrets)
+enablePlugins(KmsSecrets)
+
+secretFiles := Seq(file("secret.sbt"))
