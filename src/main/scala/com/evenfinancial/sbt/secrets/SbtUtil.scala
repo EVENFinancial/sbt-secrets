@@ -16,7 +16,7 @@ object SbtUtil {
           true
         }
         case "b" | "backup" => {
-          val backup = (file.getParentFile / (file.getName + ".backup"))
+          val backup = fileWithSuffix(file, ".backup")
           consoleLogger.info(s"backing up ${file.getName} to ${backup.getName}")
           IO.transfer(file, backup)
           true
@@ -33,6 +33,10 @@ object SbtUtil {
     } else {
       true
     }
+  }
+
+  def fileWithSuffix(file: File, suffix: String): File = {
+    file.getParentFile / (file.getName + suffix)
   }
 
 }
