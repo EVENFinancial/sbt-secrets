@@ -1,4 +1,4 @@
-name := "test-project"
+name := "test-project-kms"
 
 enablePlugins(KmsSecrets)
 
