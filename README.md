@@ -4,7 +4,7 @@ An SBT plugin for securely storing secrets in a VCS.
 
 ## Motivation
 
-From a security standpoint, committing things like passwords or API keys to a VCS is a pretty terrible idea, regardless of whether the repo is public or private. On the other hand, it's really convenient to keep all of a project's data in one place. The obvious resolution to this conflict is to encrypt the secret data before committing, and decrypt it after pulling new changes. The goal of **sbt-secrets** is to make that process easy.
+From a security standpoint, committing things like passwords or API keys to a VCS is a pretty terrible idea, regardless of whether the repo is public or private. On the other hand, it's really convenient to keep all of a project's data in one place. One resolution to this conflict is to encrypt the secret data before committing, and decrypt it after pulling new changes. The goal of **sbt-secrets** is to make that process easy.
 
 ## API
 
