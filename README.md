@@ -28,3 +28,7 @@ The `KmsSecrets` plugin leverages the **AWS Key Management Service** (KMS). In o
 4. Add `enablePlugins(KmsSecrets)` to `build.sbt`
 
 The plugin uses the specified data key to AES encrypt the secret files. The KMS console allows you to dynamically control who has access to the data key without making changes to the repository, making it a very scalable approach (if you don't mind paying to use KMS).
+
+## Miscellanea
+
+Initially implemented during an [Even Financial](https://github.com/EVENFinancial) hack-a-thon on 5 Feb, 2016.
