@@ -1,6 +1,7 @@
 package com.evenfinancial.sbt.secrets
 
 import sbt._
+import com.evenfinancial.sbt.secrets.util._
 
 object KmsSecrets extends AutoPlugin {
 

@@ -1,4 +1,4 @@
-package com.evenfinancial.sbt.secrets
+package com.evenfinancial.sbt.secrets.util
 
 import java.nio.ByteBuffer
 import java.util.Base64
