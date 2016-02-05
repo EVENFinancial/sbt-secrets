@@ -32,7 +32,7 @@ object KmsSecrets extends AutoPlugin {
 
       secretFiles.value.map { file =>
         val encryptedData = AesUtil.encrypt(IO.read(file), dataKey)
-        val _encryptedFile = encryptedFile(file)
+        val _encryptedFile = Secrets.encryptedFile(file)
         IO.write(_encryptedFile, encryptedData)
         _encryptedFile
       }
@@ -42,7 +42,7 @@ object KmsSecrets extends AutoPlugin {
       val dataKey = kmsDataKey.value
 
       secretFiles.value.map { file =>
-        val _encryptedFile = encryptedFile(file)
+        val _encryptedFile = Secrets.encryptedFile(file)
         val decryptedData = AesUtil.decrypt(IO.read(_encryptedFile), dataKey)
         IO.write(file, decryptedData)
         file
@@ -50,9 +50,5 @@ object KmsSecrets extends AutoPlugin {
     }
 
   )
-
-  private def encryptedFile(unencryptedFile: File): File = {
-    unencryptedFile.getParentFile / (unencryptedFile.getName + ".encrypted")
-  }
 
 }

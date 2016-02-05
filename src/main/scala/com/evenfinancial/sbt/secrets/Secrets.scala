@@ -28,4 +28,8 @@ object Secrets extends AutoPlugin {
 
   )
 
+  private [secrets] def encryptedFile(unencryptedFile: File): File = {
+    unencryptedFile.getParentFile / (unencryptedFile.getName + ".encrypted")
+  }
+
 }
