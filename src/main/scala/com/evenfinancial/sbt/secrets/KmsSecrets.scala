@@ -1,4 +1,4 @@
-package com.evenfinancial.sbt
+package com.evenfinancial.sbt.secrets
 
 import sbt._
 
