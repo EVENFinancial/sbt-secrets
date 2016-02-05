@@ -13,4 +13,5 @@ libraryDependencies ++= Seq(
 licenses += ("MIT", url("http://opensource.org/licenses/MIT"))
 
 bintrayRepository := "sbt-plugins"
+bintrayOrganization := Some("evenfinancial")
 publishMavenStyle := false
