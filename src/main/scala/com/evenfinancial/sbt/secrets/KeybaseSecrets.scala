@@ -10,7 +10,7 @@ object KeybaseSecrets extends AutoPlugin {
   object autoImport {
 
     val authorizedKeybaseUsernames = settingKey[Seq[String]](
-      "The Keybase IDs for whom the secret files should be encrypted."
+      "The Keybase usernames for whom the secret files should be encrypted."
     )
 
   }
