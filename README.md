@@ -18,6 +18,17 @@ The generic API consists of three keys:
 
 The API is implemented by plugins with different encryption backends.
 
+### `KeybaseSecrets`
+
+The `KeybaseSecrets` plugin is a simple wrapper around the **Keybase** CLI. To use, you must do the following:
+
+1. Sign up for a Keybase account: https://keybase.io/
+2. Sign in to Keybase via the CLI: https://keybase.io/docs/command_line
+3. Add the `authorizedKeybaseIds` key to the build. This should be a `Seq` of the Keybase usernames who should have access to the secret files.
+4. Add `enablePlugins(KeybaseSecrets)` to the build.
+
+The plugin delegates to the `keybase pgp encrypt` and `keybase pgp decrypt` commands. Keybase is free and simple to use, although the secret files need to be re-encrypted whenever a user is added or removed from `authorizedKeybaseIds`.
+
 ### `KmsSecrets`
 
 The `KmsSecrets` plugin leverages the **AWS Key Management Service** (KMS). In order to use this plugin, you must do the following:
@@ -25,7 +36,7 @@ The `KmsSecrets` plugin leverages the **AWS Key Management Service** (KMS). In o
 1. Sign up for AWS and/or set up KMS: http://docs.aws.amazon.com/kms/latest/developerguide/overview.html
 2. Sign in to AWS via the CLI: http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html
 3. Generate a KMS data key, and add the `CiphertextBlob` to `encrypted-kms-data-key.txt`: http://docs.aws.amazon.com/kms/latest/APIReference/API_GenerateDataKey.html
-4. Add `enablePlugins(KmsSecrets)` to `build.sbt`
+4. Add `enablePlugins(KmsSecrets)` to the build.
 
 The plugin uses the specified data key to AES encrypt the secret files. The KMS console allows you to dynamically control who has access to the data key without making changes to the repository, making it a very scalable approach (if you don't mind paying to use KMS).
 
