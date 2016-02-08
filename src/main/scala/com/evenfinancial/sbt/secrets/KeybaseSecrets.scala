@@ -9,7 +9,7 @@ object KeybaseSecrets extends AutoPlugin {
 
   object autoImport {
 
-    val authorizedKeybaseIds = settingKey[Seq[String]](
+    val authorizedKeybaseUsernames = settingKey[Seq[String]](
       "The Keybase IDs for whom the secret files should be encrypted."
     )
 
@@ -20,12 +20,12 @@ object KeybaseSecrets extends AutoPlugin {
 
   override def projectSettings = Seq(
 
-    authorizedKeybaseIds := Seq.empty,
+    authorizedKeybaseUsernames := Seq.empty,
 
     encryptSecretFiles := {
       secretFiles.value.map { file =>
         val encryptedFile = SbtUtil.fileWithSuffix(file, ".encrypted")
-        (Process.cat(file) #| (Seq("keybase", "pgp", "encrypt") ++ authorizedKeybaseIds.value) #> encryptedFile).!
+        (Process.cat(file) #| (Seq("keybase", "pgp", "encrypt") ++ authorizedKeybaseUsernames.value) #> encryptedFile).!
         encryptedFile
       }
     },

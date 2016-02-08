@@ -24,10 +24,10 @@ The `KeybaseSecrets` plugin is a simple wrapper around the **Keybase** CLI. To u
 
 1. Sign up for a Keybase account: https://keybase.io/
 2. Sign in to Keybase via the CLI: https://keybase.io/docs/command_line
-3. Add the `authorizedKeybaseIds` key to the build. This should be a `Seq` of the Keybase usernames who should have access to the secret files.
+3. Add the `authorizedKeybaseUsernames` key to the build. This should be a `Seq` of the Keybase usernames who should have access to the secret files.
 4. Add `enablePlugins(KeybaseSecrets)` to the build.
 
-The plugin delegates to the `keybase pgp encrypt` and `keybase pgp decrypt` commands. Keybase is free and simple to use, although the secret files need to be re-encrypted whenever a user is added or removed from `authorizedKeybaseIds`.
+The plugin delegates to the `keybase pgp encrypt` and `keybase pgp decrypt` commands. Keybase is free and simple to use, although the secret files need to be re-encrypted whenever a user is added or removed from `authorizedKeybaseUsernames`.
 
 ### `KmsSecrets`
 
