@@ -43,7 +43,7 @@ object KmsSecrets extends AutoPlugin {
       val dataKey = kmsDataKey.value
 
       secretFiles.value.map { file =>
-        if (SbtUtil.canOverwriteFile(file)) {
+        SbtUtil.promptForOverwrite(file) {
           val _encryptedFile = SbtUtil.fileWithSuffix(file, ".encrypted")
           val decryptedData = AesUtil.decrypt(IO.read(_encryptedFile), dataKey)
           IO.write(file, decryptedData)

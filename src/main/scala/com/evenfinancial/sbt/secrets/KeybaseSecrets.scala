@@ -32,7 +32,7 @@ object KeybaseSecrets extends AutoPlugin {
 
     decryptSecretFiles := {
       secretFiles.value.map { file =>
-        if (SbtUtil.canOverwriteFile(file)) {
+        SbtUtil.promptForOverwrite(file) {
           val encryptedFile = SbtUtil.fileWithSuffix(file, ".encrypted")
           (Process.cat(encryptedFile) #| Seq("keybase", "pgp", "decrypt") #> file).!
         }
