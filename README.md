@@ -40,6 +40,16 @@ The `KmsSecrets` plugin leverages the **AWS Key Management Service** (KMS). In o
 
 The plugin uses the specified data key to AES encrypt the secret files. The KMS console allows you to dynamically control who has access to the data key without making changes to the repository, making it a very scalable approach (if you don't mind paying to use KMS).
 
+## Testing
+
+There are two test projects `test-project-keybase` and `test-project-kms`, for testing the corresponding plugins. For each, first follow the associated setup instructions. Then test the `encryptSecretFiles` and `decryptSecretFiles` commands:
+
+1. Run `encryptSecretFiles`. Ensure that `secret.sbt.encrypted` is generated and that it contains seemingly encrypted text.
+2. Delete `secret.sbt` and run `decryptSecretFiles`. Ensure that `secret.sbt` is re-generated, and that it contains the same text as before.
+3. Run `decryptSecretFiles` again and verify that the interactive prompt for handling the existing file works as expected.
+
+For testing purposes, `secret.sbt` is checked into the VCS in each project, so it should be easy to verify that the contents did not change after encryption / decryption. **Under normal circumstances, `secret.sbt` should be ignored by the VCS**.
+
 ## Miscellanea
 
 Initially implemented during an [Even Financial](https://github.com/EVENFinancial) hack-a-thon on 5 Feb, 2016.
