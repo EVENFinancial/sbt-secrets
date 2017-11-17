@@ -15,6 +15,8 @@ From a security standpoint, committing things like passwords or API keys to a VC
 The generic API consists of three keys:
 
 * `secretFiles` - a list of files that contain secrets, and thus need to be managed by sbt-secrets. **These files _must_ be ignored by the VCS**. These files should be minimal and not include any non-secret data. In practice, most repos will have only secret file.
+* `interactiveOverwrite` - Whether to prompt when overwriting existing files.
+* `aesKeySize` - The AES key-size to use for encryption and decryption. Defaults to 128. 256 bits requires the Java Cryptography Extension.
 * `encryptSecretFiles` - encrypts the files specified by `secretFiles`, storing the results in files alongside the originals, with suffix `.encrypted`.
 * `decryptSecretFiles` - decrypts `.encrypted` files, storing the results back in the original files specified by `secretFiles`.
 

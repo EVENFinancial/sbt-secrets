@@ -5,7 +5,7 @@ import com.evenfinancial.sbt.secrets.util._
 
 object KeybaseSecrets extends AutoPlugin {
 
-  override def requires = Secrets
+  override def requires: Secrets.type = Secrets
 
   object autoImport {
 
@@ -32,7 +32,7 @@ object KeybaseSecrets extends AutoPlugin {
 
     decryptSecretFiles := {
       secretFiles.value.map { file =>
-        SbtUtil.promptForOverwrite(file) {
+        SbtUtil.promptForOverwrite(file, interactiveOverwrite.value) {
           val encryptedFile = SbtUtil.fileWithSuffix(file, ".encrypted")
           (Process.cat(encryptedFile) #| Seq("keybase", "pgp", "decrypt") #> file).!
         }

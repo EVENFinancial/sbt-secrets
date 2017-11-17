@@ -9,34 +9,30 @@ import javax.crypto.spec.{IvParameterSpec, SecretKeySpec}
 // @see https://github.com/playframework/playframework/blob/2.4.x/framework/src/play/src/main/scala/play/api/libs/Crypto.scala
 object AesUtil {
 
-  def encrypt(data: String, dataKey: String): String = {
-    val secretKey = buildSecretKey(dataKey)
+  def encrypt(data: String, secretKeySpec: SecretKeySpec): String = {
     val cipher = buildCipher()
-    cipher.init(Cipher.ENCRYPT_MODE, secretKey)
+    cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec)
     val encrypted = cipher.doFinal(data.getBytes("UTF-8"))
-    val result = cipher.getIV() ++ encrypted
+    val result = cipher.getIV ++ encrypted
     Base64.getEncoder.encodeToString(result)
   }
 
-  def decrypt(data: String, dataKey: String): String = {
-    val secretKey = buildSecretKey(dataKey)
+  def decrypt(data: String, secretKeySpec: SecretKeySpec): String = {
     val bytes = Base64.getDecoder.decode(data)
     val cipher = buildCipher()
     val iv = bytes.slice(0, cipher.getBlockSize)
     val payload = bytes.slice(cipher.getBlockSize, bytes.size)
-    cipher.init(Cipher.DECRYPT_MODE, secretKey, new IvParameterSpec(iv))
+    cipher.init(Cipher.DECRYPT_MODE, secretKeySpec, new IvParameterSpec(iv))
     new String(cipher.doFinal(payload), "utf-8")
   }
 
-  private def buildCipher() = Cipher.getInstance("AES/CTR/NoPadding")
+  private def buildCipher(): Cipher = Cipher.getInstance("AES/CTR/NoPadding")
 
-  private def buildSecretKey(dataKey: String) = {
+  def buildSecretKey(dataKey: String, keySizeBits: Int): SecretKeySpec = {
     val algorithm = "AES"
     val messageDigest = MessageDigest.getInstance("SHA-256")
     messageDigest.update(dataKey.getBytes("utf-8"))
-    // max allowed length in bits / (8 bits to a byte)
-    val maxAllowedKeyLength = Cipher.getMaxAllowedKeyLength(algorithm) / 8
-    val raw = messageDigest.digest().slice(0, maxAllowedKeyLength)
+    val raw = messageDigest.digest().slice(0, keySizeBits / 8)
     new SecretKeySpec(raw, algorithm)
   }
 
