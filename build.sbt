@@ -6,8 +6,8 @@ organization := "com.evenfinancial"
 name := "sbt-secrets"
 
 libraryDependencies ++= Seq(
-  "com.amazonaws" % "aws-java-sdk-kms" % "1.10.22",
-  "org.scalatest" %% "scalatest" % "2.2.5" % Test
+  "com.amazonaws" % "aws-java-sdk-kms" % "1.11.285",
+  "org.scalatest" %% "scalatest" % "3.0.5" % Test
 )
 
 licenses += ("MIT", url("http://opensource.org/licenses/MIT"))
