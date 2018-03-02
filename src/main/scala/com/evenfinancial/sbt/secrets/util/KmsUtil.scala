@@ -10,7 +10,9 @@ object KmsUtil {
 
   lazy val client = AWSKMSClientBuilder.defaultClient()
 
-  def decryptDataKey(encryptedDataKey: String): String = {
+  def decryptDataKey(
+                      encryptedDataKey: String,
+                      kmsKeyId: Option[String] = None): String = {
     val byteBuffer = ByteBuffer.wrap(Base64.getDecoder.decode(encryptedDataKey.trim))
     val decryptRequest = new DecryptRequest().withCiphertextBlob(byteBuffer)
     val decryptResult = client.decrypt(decryptRequest)
