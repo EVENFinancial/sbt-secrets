@@ -6,7 +6,7 @@ organization := "com.evenfinancial"
 name := "sbt-secrets"
 
 libraryDependencies ++= Seq(
-  "com.amazonaws" % "aws-java-sdk-kms" % "1.11.285",
+  "com.amazonaws" % "aws-java-sdk-kms" % "1.11.1034",
   "org.scalatest" %% "scalatest" % "3.0.5" % Test
 )
 
