@@ -1,17 +1,20 @@
 sbtPlugin := true
 
-scalaVersion := "2.12.4"
+scalaVersion := "2.12.15"
 
 organization := "com.evenfinancial"
 name := "sbt-secrets"
 
 libraryDependencies ++= Seq(
-  "com.amazonaws" % "aws-java-sdk-kms" % "1.11.285",
-  "org.scalatest" %% "scalatest" % "3.0.5" % Test
+  "com.amazonaws" % "aws-java-sdk-kms" % "1.12.128",
+  "org.scalatest" %% "scalatest" % "3.0.9" % Test
 )
 
 licenses += ("MIT", url("http://opensource.org/licenses/MIT"))
 
-bintrayRepository := "sbt-plugins"
-bintrayOrganization := Some("evenfinancial")
-publishMavenStyle := false
+publishTo := {
+  if (isSnapshot.value)
+    Some("EVEN Private Snapshots" at "s3://evenfinancial/maven/private/snapshots")
+  else
+    Some("EVEN Private Releases" at "s3://evenfinancial/maven/private/releases")
+}
