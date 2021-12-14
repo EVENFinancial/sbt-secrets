@@ -15,3 +15,6 @@ server.pid
 .cache
 secrets.sbt
 .idea/
+.bloop/
+.bsp/
+metals.sbt
