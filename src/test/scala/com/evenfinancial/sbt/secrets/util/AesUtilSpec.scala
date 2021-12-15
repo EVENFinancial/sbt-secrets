@@ -1,10 +1,11 @@
 package com.evenfinancial.sbt.secrets.util
 
-import org.scalatest.{WordSpec, MustMatchers}
+import org.scalatest.matchers.must.Matchers
+import org.scalatest.wordspec.AnyWordSpec
 
 class AesUtilSpec
-  extends WordSpec
-  with MustMatchers
+  extends AnyWordSpec
+  with Matchers
 {
 
   "AesUtil" must {
