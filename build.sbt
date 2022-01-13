@@ -1,6 +1,6 @@
 sbtPlugin := true
 
-scalaVersion := "2.12.15"
+scalaVersion := "2.13.8"
 
 organization := "com.evenfinancial"
 name := "sbt-secrets"
