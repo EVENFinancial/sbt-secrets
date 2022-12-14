@@ -1,0 +1,15 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: sbt-secrets
+  title: Sbt Secrets
+  description: This service makes gizmos to attach to widgets      <=== REPLACE THIS
+  annotations:
+    github.com/project-slug: EVENFinancial/sbt-secrets
+spec:
+  # The type of component: service, website, tool
+  type: service
+  # The maturity of this component: experimental, production, deprecated, archived
+  lifecycle: production
+  # The team or user responsible for this component (change me to your github team)
+  owner: group:eng
